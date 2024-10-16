@@ -8,10 +8,6 @@ from ultralytics.utils.plotting import save_one_box
 from ultralytics import YOLO
 from ultralytics.utils import LOGGER, TryExcept, ops
 
-# found in ultralytics/engine/results.py
-# We use composition to include Results instances within the ResultMeters class instead of inheriting
-# from ultralytics.utils.files import increment_path
-
 from roboflow import Roboflow
 
 
