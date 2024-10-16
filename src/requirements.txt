@@ -1,0 +1,8 @@
+roboflow
+ultralytics
+numpy
+pandas
+PIL
+torch
+torchvision
+timm

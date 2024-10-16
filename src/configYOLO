@@ -1,0 +1,8 @@
+# YOLO model configuration
+yolo:
+  model_path: "/content/runs/detect/train/weights/best.pt"
+  version: "v5"
+
+roboflow:
+  project_name: "ai-meter-reading"
+  dataset_version: "1"
