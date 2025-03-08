@@ -1,13 +1,18 @@
-## MacOS file
-.DS_Store
-
-## vscode config
-.vscode/
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+
+# vscode and macbook confs
+*.DS_Store
+*.vs
+*.user
+*~
+*.vscode
+*.idea
+
+# Data folder
+data/
 
 # C extensions
 *.so
@@ -83,6 +88,9 @@ target/
 
 # Jupyter Notebook
 .ipynb_checkpoints
+
+# .notebook cache folder
+.notebook/
 
 # IPython
 profile_default/

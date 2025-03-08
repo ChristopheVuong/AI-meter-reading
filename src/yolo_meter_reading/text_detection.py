@@ -10,7 +10,11 @@ from ultralytics.utils import LOGGER, TryExcept, ops
 
 from roboflow import Roboflow
 
+METER_CLASS = 1
 
+# Beware dependency inversion principle with result class as attribute of the following class
+# tightly coupled with ultralytics package concrete implementation of results
+# add an intermediate abstract class to decouple the two classes
 class ResultMeters:
     """
     A class for storing and manipulating inference results containing dial meters.
@@ -33,11 +37,24 @@ class ResultMeters:
 
     def __init__(self, result):
         """
-        Result for
+        Initialize the ResultMeters class with the given result.
         """
         self.result = result
         self.detection_precision = None
         self.filename = None
+
+    def write_meters_crop(self, file_name=None):
+        """
+        Write a txt file with name of file and the bounding box of the meters.
+        """
+        file_name = self.filename if self.filename else "meters_info.txt"
+        with open(Path(file_name), 'w') as f:
+            for box in self.result.boxes:
+                if int(box.cls) == METER_CLASS:
+                    f.write(f"{self.filename}: {box.xyxy}\n")
+        LOGGER.info(f"Saved meters crop information to {file_name}.")
+        return 
+        # consistent way to handle absent boxes
 
     def save_meters_crop(self, save_dir, file_name=None):
         """
@@ -71,7 +88,7 @@ class ResultMeters:
         # box0_min_conf = None
         for d in self.result.boxes:
             confidence = d.conf
-            if int(d.cls) == 1 and confidence > max_conf:
+            if int(d.cls) == METER_CLASS and confidence > max_conf:
                 max_conf = confidence
                 box1_max_conf = d
 
@@ -113,13 +130,24 @@ class ResultMeters:
         """
         self.result.show()
 
+    def write_flag(self, file_name=None):
+        """
+        Write a txt file with name of file and the detection flag.
+        """
+        file_name = self.filename if self.filename else "meters_info.txt"
+        with open(Path(file_name), 'w') as f:
+            f.write(f"{self.filename}: {self.detection_precision}\n")
+        LOGGER.info(f"Saved detection flag to {file_name}.")
+        return
+
 # Suppose the pictures and test folder are in Challenge_Suez
 PATH = "/content/drive/MyDrive"
 CHALLENGE_NAME = "/AI-meter-reading"
-PATH_PROJECT = PATH + CHALLENGE_NAME
-FOLDER_IMAGE_PATH = PATH_PROJECT + "/pictures"
+PATH_PROJECT = f"{PATH}{CHALLENGE_NAME}"
+FOLDER_IMAGE_PATH = f"{PATH_PROJECT}/pictures"
 
 if __name__ == '__main__':
+    # TODO : to  rewrite
     # Do not hardcode
     rf = Roboflow(api_key="YPr8z8exI5EnxDegn87q")  # available until late October
     project = rf.workspace("ai-meter-reading").project("ai-meter-reading")

@@ -1,0 +1,5 @@
+This project includes the following third-party software:
+
+- PaddleOCR (https://github.com/PaddlePaddle/PaddleOCR)
+  Licensed under the Apache License 2.0
+  Copyright 2016 PaddlePaddle

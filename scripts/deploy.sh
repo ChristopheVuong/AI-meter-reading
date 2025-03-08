@@ -1,0 +1,1 @@
+# run dockerfile the app being in src folder

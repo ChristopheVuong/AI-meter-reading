@@ -13,7 +13,7 @@ from torch.utils.tensorboard import SummaryWriter
 import torch.optim as optim
 from torchvision.transforms import v2
 
-from dataLoader import dataloaderRegression
+from YOLO.dataLoader import dataloaderRegression
 
 BATCH_SIZE = 32
 

@@ -1,0 +1,72 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]  # Required for building the package
+build-backend = "poetry.core.masonry.api"  # Build backend for Poetry
+
+[tool.poetry]
+name = "AI-meter-reading"  # Name of your package
+version = "0.1.0"          # Version number (follow semantic versioning)
+description = "A Python package for processing meter reading data."  # Updated description
+authors = ["Christophe Vuong <christophe.vuong108@gmail.com>"]  # Your name and email
+license = "MIT"  # License type
+readme = "README.md"  # Path to your README file
+repository = "https://github.com/ChristopheVuong/AI-meter-reading"  # Updated link to your repository
+documentation = "https://github.com/ChristopheVuong/AI-meter-reading"
+keywords = ["meter-reading", "data-processing", "analytics", "ocr", "digit-recognizer"]  # Updated keywords for discoverability
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+]
+packages = [
+    { include = "paddleocr_meter_reading", from = "src" },  # Include the custom package
+    { include = "yolo_meter_reading", from = "src" },  # Include the custom YOLO package
+]
+include = [
+    "models/**/*",  # Include all files in the models directory
+]
+exclude = [
+    "notebooks/*",  # Exclude notebooks directory
+    "tests/*",      # Exclude tests directory
+    "**/*.pyc",     # Exclude all .pyc files
+    "**/__pycache__/*"  # Exclude all __pycache__ directories
+]
+
+[tool.poetry.dependencies]
+# Dependencies for PaddleOCR
+python = ">=3.8"  # Minimum Python version required
+pandas = "^1.5.0"  # Pandas dependency
+numpy = "*"  # NumPy dependency
+scikit-learn = "^1.0.0"  # Added dependency for machine learning tasks
+requests = "*"  # Added dependency for handling HTTP requests
+pillow = "*"  # Added dependency for image processing
+shapely = "*" 
+scikit-image = "*"
+pyclipper = "*"
+lmdb = "*"
+tqdm = "*"
+rapidfuzz = "*"
+opencv-python = "*"
+opencv-contrib-python = "*"
+cython = "*"
+pyyaml = "*"
+python-docx = "*"
+beautifulsoup4 = "*"
+fonttools = ">=4.24.0"
+fire = ">=0.3.0"
+albumentations = "*"
+albucore = "*"
+[tool.poetry.dev-dependencies]
+pytest = "^7.0.0"  # Development dependency for testing
+black = "^23.0.0"  # Code formatting tool
+flake8 = "^6.0.0"  # Linting tool
+mypy = "^0.930"  # Added typing checks tool
+
+[tool.poetry.scripts]
+download-model = "scripts.download_ppocrv3.sh"  # Define a script to download data
+train-model = "scripts.trainPaddleOCR.sh"  # Define a script to train the machine learning model
+run-model = "scripts.run_model:main"  # Define a script to run machine learning models
+evaluate-model = "scripts.evaluate_model:main"  # Define a script to evaluate the machine learning model
+deploy = "scripts.deploy.sh"  # Define a script to deploy the model
+start = "src.app:main"  # Define a script to start the application
