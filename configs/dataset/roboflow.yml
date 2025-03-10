@@ -1,0 +1,6 @@
+# configuration for Roboflow dataset
+api_key: "YPr8z8exI5EnxDegn87q"
+workspace: "ai-meter-reading"
+project_name: "ai-meter-reading"
+project_version : 2
+downmload_type: "createml"

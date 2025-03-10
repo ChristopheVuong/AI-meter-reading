@@ -11,6 +11,11 @@ import ImagePreprocessor
 
 app = FastAPI(title="Image Classification API")
 
+
+"""
+Default app to improve replace RESNET with SOTA OCR models
+"""
+
 # Load pre-trained model on startup
 @app.on_event("startup")
 def load_model():

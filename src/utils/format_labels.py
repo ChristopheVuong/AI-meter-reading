@@ -211,32 +211,4 @@ class TensorFlowLabels:
             return False
             
         return True
-
-
-# Example usage
-# access from a Roboflow project
-### provide with parameters : tensorflow to paddleocr simple dataset, or yolo to tensorflow (what others?)
-### use argparse to provide the parameters
-### by default in argparse it looks in src/configs
-if __name__ == "__main__":
-    # Load YAML file
-    project_dir = Path(__file__).parent.parent
-    config_path = project_dir / "configs" / "dataset" / "tensorflow_to_simpleDataset.yaml"
-    with open(config_path, "r") as f:
-        config = yaml.safe_load(f)
-    print(config)
-    # Check required keys in config
-    required_keys = ["bbs_file", "labels_file", "img_dir", "output_file"]
-    for key in required_keys:
-        if key not in config:
-            raise ValueError(f"Missing required config key: {key}")
-    # Initialize TensorFlowLabels class
-    tf_labels = TensorFlowLabels()
-    # Convert TensorFlow annotations to PaddleOCR format
-    annotations = tf_labels.convert_to_paddleocr(
-        bbs_file=config["bbs_file"],
-        labels_file=config["labels_file"],
-        img_dir=config["img_dir"],
-        output_file=config["output_file"],
-        overwrite=config.get("overwrite", False),
-    )
+    

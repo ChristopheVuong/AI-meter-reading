@@ -57,6 +57,7 @@ fonttools = ">=4.24.0"
 fire = ">=0.3.0"
 albumentations = "*"
 albucore = "*"
+roboflow = "*" # roboflow dependency (for YOLO is IT REALLY USEFUL?)
 [tool.poetry.dev-dependencies]
 pytest = "^7.0.0"  # Development dependency for testing
 black = "^23.0.0"  # Code formatting tool

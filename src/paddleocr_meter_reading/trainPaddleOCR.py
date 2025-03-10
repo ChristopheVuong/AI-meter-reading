@@ -21,9 +21,9 @@ import paddleocr.tools.program as program
 from paddleocr.tools.train import main
 
 # environment variables for the train directory, configs, etc
-__dir__ = os.path.dirname(os.path.abspath(__file__))
-# sys.path.append(__dir__) no need here because inside "nested folder"
-sys.path.insert(0, os.path.abspath(os.path.join(__dir__, "..")))
+# __dir__ = os.path.dirname(os.path.abspath(__file__))
+# # sys.path.append(__dir__) no need here because inside "nested folder"
+# sys.path.insert(0, os.path.abspath(os.path.join(__dir__, "..")))
 # making it current for the data_dir in YAML file
 # issue is for the import or run the command (basically we only want to import main from train.py without any other side effects)
 # no need to expose ppocr to the user

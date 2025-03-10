@@ -1,6 +1,10 @@
 from utils.format_labels import tensorflow_to_paddleocr
 import os
 
+"""
+Replace with generic paths
+"""
+
 def testConverter():
     bbs_file = "/Users/cvuong/Challenge_Suez/ai meter reading.v2i.tensorflow/train/_annotations.csv"
     labels_file = "/Users/cvuong/Challenge_Suez/index.csv"
